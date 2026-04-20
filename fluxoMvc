@@ -1,0 +1,148 @@
+# ⚙️ Fluxo simples do MVC (quem chama quem)
+
+## 🟢 1. Entrada no sistema
+
+Você acessa no navegador:
+
+```id="a1"
+http://localhost/lanches/
+```
+
+👉 O primeiro arquivo carregado é:
+
+```id="a2"
+index.php
+```
+
+---
+
+## 🟡 2. index.php (roteador)
+
+Ele decide qual controller usar:
+
+```php id="a3"
+require 'controllers/LancheController.php';
+$controller = new LancheController();
+$controller->index();
+```
+
+👉 Ou seja:
+
+```id="a4"
+index.php → LancheController
+```
+
+---
+
+## 🔵 3. Controller
+
+O método `index()` roda:
+
+```php id="a5"
+$model = new Lanche();
+$itens = $model->listar();
+
+require 'views/lanches/index.php';
+```
+
+👉 Então ele faz 2 coisas:
+
+```id="a6"
+Controller → Model
+Controller → View
+```
+
+---
+
+## 🟣 4. Model
+
+Quando o controller chama:
+
+```php id="a7"
+new Lanche();
+```
+
+👉 carrega:
+
+```id="a8"
+models/Lanche.php
+```
+
+E executa:
+
+```php id="a9"
+$this->pdo->query(...)
+```
+
+👉 Busca dados no banco
+
+Depois retorna pro controller:
+
+```id="a10"
+Model → Controller
+```
+
+---
+
+## 🟠 5. View
+
+O controller então carrega:
+
+```php id="a11"
+require 'views/lanches/index.php';
+```
+
+👉 A view recebe os dados:
+
+```php id="a12"
+$itens
+```
+
+E exibe na tela
+
+---
+
+# 🔁 RESUMO (o mais importante)
+
+```id="a13"
+index.php → Controller → Model → Controller → View
+```
+
+---
+
+# 🧠 OUTRO EXEMPLO (SALVAR)
+
+Quando envia formulário:
+
+```id="a14"
+POST → index.php
+```
+
+---
+
+## Fluxo:
+
+```id="a15"
+index.php → Controller (salvar)
+Controller → Model (cadastrar)
+Model → Banco
+Model → Controller
+Controller → index.php (redirect)
+index.php → Controller (index)
+Controller → Model (listar)
+Controller → View
+```
+
+---
+
+# 🎯 REGRA SIMPLES PRA GRAVAR
+
+```id="a16"
+index chama Controller
+Controller chama Model
+Controller chama View
+Model NÃO chama ninguém
+View NÃO chama ninguém
+```
+
+---

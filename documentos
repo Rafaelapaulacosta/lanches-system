@@ -1,0 +1,191 @@
+# 📄 Documento de Requisitos — Sistema de Lanchonete
+
+## 1. 📌 Visão Geral
+
+Este documento descreve os requisitos do sistema de uma lanchonete, que será desenvolvido utilizando **PHP puro, HTML e CSS**.
+
+Nesta primeira versão, será implementado um **módulo de cadastros básicos**, que servirá como base para futuras funcionalidades do sistema.
+
+---
+
+## 2. 🎯 Objetivo do Sistema
+
+Disponibilizar um conjunto de cadastros essenciais para organização das informações da lanchonete, permitindo que futuras versões utilizem esses dados em funcionalidades como pedidos, entregas e relatórios.
+
+---
+
+## 3. 👤 Usuário do Sistema
+
+* Administrador da lanchonete
+* Atendente
+
+---
+
+## 4. 🧩 Módulo: Cadastros Básicos
+
+### 4.1 Descrição
+
+O módulo permitirá o gerenciamento de dados fundamentais do sistema por meio de operações de CRUD (Create, Read, Update, Delete).
+
+---
+
+## 5. 📚 Entidades do Sistema
+
+O sistema deverá possuir os seguintes cadastros:
+
+### 5.1 Lanches
+
+* Nome
+* Descrição
+* Preço
+
+---
+
+### 5.2 Bebidas
+
+* Nome
+* Descrição
+* Preço
+
+---
+
+### 5.3 Bairros
+
+* Nome do bairro
+
+---
+
+## 6. ⚙️ Funcionalidades (Requisitos Funcionais)
+
+### RF01 — Cadastrar Lanche
+
+O sistema deve permitir cadastrar um lanche com nome, descrição e preço.
+
+---
+
+### RF02 — Listar Lanches
+
+O sistema deve exibir todos os lanches cadastrados.
+
+---
+
+### RF03 — Editar Lanche
+
+O sistema deve permitir a edição dos dados de um lanche.
+
+---
+
+### RF04 — Remover Lanche
+
+O sistema deve permitir a exclusão de um lanche.
+
+---
+
+### RF05 — Cadastrar Bebida
+
+O sistema deve permitir cadastrar uma bebida com nome, descrição e preço.
+
+---
+
+### RF06 — Listar Bebidas
+
+O sistema deve exibir todas as bebidas cadastradas.
+
+---
+
+### RF07 — Editar Bebida
+
+O sistema deve permitir a edição dos dados de uma bebida.
+
+---
+
+### RF08 — Remover Bebida
+
+O sistema deve permitir a exclusão de uma bebida.
+
+---
+
+### RF09 — Cadastrar Bairro
+
+O sistema deve permitir cadastrar bairros.
+
+---
+
+### RF10 — Listar Bairros
+
+O sistema deve exibir os bairros cadastrados.
+
+---
+
+### RF11 — Editar Bairro
+
+O sistema deve permitir editar um bairro.
+
+---
+
+### RF12 — Remover Bairro
+
+O sistema deve permitir excluir um bairro.
+
+---
+
+## 7. 📋 Regras de Negócio
+
+* RN01: Todos os campos obrigatórios devem ser preenchidos
+* RN02: O preço deve ser maior que zero
+* RN03: Não permitir cadastro com nome vazio
+* RN04: Não permitir duplicidade de nomes para bairros
+* RN05: Os dados cadastrados devem estar disponíveis para uso em outros módulos
+
+---
+
+## 8. ⚠️ Requisitos Não Funcionais
+
+* RNF01: O sistema será desenvolvido em PHP puro (sem uso de frameworks)
+* RNF02: Interface simples utilizando HTML e CSS
+* RNF03: O sistema deve ser executado em ambiente local (ex: XAMPP)
+* RNF04: Utilização de banco de dados relacional
+* RNF05: Código organizado seguindo padrão MVC
+
+---
+
+## 9. 🧪 Critérios de Aceite (Exemplo)
+
+### Cenário: Cadastro de Lanche
+
+* **DADO QUE** o usuário acessa a tela de cadastro
+* **QUANDO** preencher os campos obrigatórios
+* **E** clicar em salvar
+* **ENTÃO** o sistema deve cadastrar o lanche com sucesso
+* **E** exibir mensagem de confirmação
+
+---
+
+### Cenário: Cadastro de Bairro
+
+* **DADO QUE** o usuário acessa a tela de cadastro de bairros
+* **QUANDO** informar o nome do bairro
+* **E** clicar em salvar
+* **ENTÃO** o sistema deve registrar o bairro
+* **E** não permitir duplicidade
+
+---
+
+## 10. 📦 Entregáveis da Primeira Versão
+
+* CRUD completo de Lanches
+* CRUD completo de Bebidas
+* CRUD completo de Bairros
+* Integração com banco de dados
+* Interface funcional básica
+
+---
+
+## 11. 🚀 Evoluções Futuras
+
+* Cadastro de pedidos
+* Controle de entregas por bairro
+* Cadastro de clientes
+* Relatórios gerenciais
+
+---
