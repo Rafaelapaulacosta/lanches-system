@@ -20,18 +20,20 @@
 
             <div class="mb-3">
                 <label class="form-label">Nome</label>
-                <input type="text" name="nome" class="form-control" placeholder="Digite o nome do lanche" required>
+                <input type="text" name="nome" value="<?= $lanche['nome'] ?? '' ?>" class="form-control" placeholder="Digite o nome do lanche" required>
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Descrição</label>
-                <input type="text" name="descricao" class="form-control" placeholder="Digite a descrição do lanche" required>
+                <input type="text" name="descricao" value="<?= $lanche['descricao'] ?? '' ?>" class="form-control" placeholder="Digite a descrição do lanche" required>
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Preço</label>
-                <input type="number" step="0.01" name="preco"   min="0"  class="form-control" placeholder="Ex: 10.50" required>
+                <input type="number" step="0.01" name="preco" value="<?= $lanche['preco'] ?? '' ?>" min="0" class="form-control" placeholder="Ex: 10.50" required>
             </div>
+
+            <input type="hidden" name="id" value="<?= $lanche['id'] ?? '' ?>">
 
             <button type="submit" class="btn btn-success">Salvar</button>
             <a href="index.php" class="btn btn-secondary">Voltar</a>

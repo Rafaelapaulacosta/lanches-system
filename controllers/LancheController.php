@@ -12,36 +12,99 @@ class LancheController {
 
 // aqui vai agrupar todas as açoes do lanche
 
-  public function cadastrar () {
+     public function cadastrar () {
 
        require __DIR__ . '/../views/lanches/form.php'; // quando a rota for acionada ela mostra a view de formulario
 
 
   }
 
-   public function salvarDados(){
+    public function salvarDados(){
 
+    if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-   if ($_SERVER['REQUEST_METHOD'] === 'POST'){ // esse metodo é pra que so acesse via post segurança
+        $id = $_POST['id'] ?? '';
 
+        $nome = $_POST['nome'] ?? '';
 
-    $nome = $_POST['nome'] ?? ''; // aqui pega o que o usuario digitar no nome e guarda na variavel nome
-    $descricao = $_POST['descricao'] ?? ''; // aqui tambem
-    $preco = $_POST['preco'] ?? ''; // aqui tambem aa caso esteja vazio nao envia nada
+        $descricao = $_POST['descricao'] ?? '';
 
-    $preco = str_replace(',', '.', $preco); // aqui troca a virgula por ponto devido ao banco 
+        $preco = $_POST['preco'] ?? '';
 
-    $lancheModel = new Lanche ();  // aqui ela estancia a model e fala ei pegue esse dados aqui
-    $lancheModel-> cadastrar($nome, $descricao, $preco); // aqui faz parte tambem
+        $preco = str_replace(',', '.', $preco);
 
-    header('Location: index.php?rota=lanches');
-     exit;
+        $lancheModel = new Lanche();
 
-    } 
+        // EDITAR
+        if (!empty($id)) {
 
+            $dados = [
+                'id' => $id,
+                'nome' => $nome,
+                'descricao' => $descricao,
+                'preco' => $preco
+            ];
 
-       }
+            $lancheModel->editar($dados);
 
+        } else {
+
+            // CADASTRAR
+            $lancheModel->cadastrar(
+                $nome,
+                $descricao,
+                $preco
+            );
+        }
+
+        header('Location: index.php?rota=lanches-listar');
+
+        exit;
+    }
+}
+
+     public function listar() {
+
+    $lancheModel = new Lanche(); // aqui instancia a model
+    $lanches = $lancheModel->listar(); // aqui chama o metodo listar da model e guarda o resultado na variavel lanches
+     
+    require_once __DIR__ . '/../views/lanches/index.php'; // aqui chama a view de listar e passa os dados para ela
+     }
   
+
+       public function buscarporID () {
+        
+          $id = $_GET['id'];
+
+          $lancheModel = new Lanche();
+
+          $lanche = $lancheModel->buscarporID($id);
+
+            require_once __DIR__ . '/../views/lanches/form.php';
+
+            }
+
+
+
+       public function editarporID () {
+          $dados = $_POST;
+
+          $model = new Lanche();
+
+          $model ->editar($dados);
+
+           header('Location: ?rota=lanches-listar');
+                 exit;   
+            }
+
+       public function excluirporID () {
+
+            $id = $_GET['id'];
+
+            $lancheModel = new Lanche();
+            $lancheModel->excluirporID($id);
+            header('Location: index.php?rota=lanches-listar');
+            exit;
+            }     
   }
 

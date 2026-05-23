@@ -11,8 +11,9 @@ switch ($rota) {
         require_once 'home.php'; // aqui é onde a pagina home.php é carregada quando a rota é 'home' ou seja http://localhost/Imperio/ImperioLanches/?rota=home ou http://localhost/Imperio/ImperioLanches/ para acessar a pagina home por padrão
         break;
 
-    case 'lanches':
-        require_once 'views/lanches/index.php'; // aqui é onde a pagina views/lanches/index.php é carregada quando a rota é 'lanches' ou seja http://localhost/Imperio/ImperioLanches/?rota=lanches para acessar a pagina de lanches
+    case 'lanches-listar':
+        $controller = new LancheController();
+        $controller->listar();
         break;
 
     case 'lanches-cadastrar';
@@ -25,6 +26,23 @@ switch ($rota) {
         $controller->salvarDados();
         break;
 
+
+    case 'lanches-buscarporID':
+    $controller = new LancheController();
+    $controller->buscarporID();
+    break;
+
+    case 'lanches-editar':
+    $controller = new LancheController();
+    $controller->editarporID();
+    break;
+
+    case 'lanches-excluir':
+    $controller = new LancheController();
+    $controller->excluirporID();
+    break;
+    
+    
     default:
         echo "Página não encontrada"; // aqui é onde é exibida a mensagem "Página não encontrada" quando a rota não é 'home' ou 'lanches'
         break;

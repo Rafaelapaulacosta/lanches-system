@@ -15,7 +15,7 @@
 
     <div>
       <a href="index.php?rota=home" class="btn btn-light me-2">Home</a>
-      <a href="index.php?rota=lanches-cadastrar" class="btn btn-light">Lanches</a>
+      <a href="index.php?rota=lanches-listar" class="btn btn-light">Lanches</a>
     </div>
   </div>
 </nav>
